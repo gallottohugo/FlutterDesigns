@@ -8,40 +8,36 @@ class HomePage extends StatelessWidget {
 			appBar: AppBar(
 				title: Text('Flutter designs'),
 			),
-			body: Column(
-				children: <Widget>[
-					SizedBox(height: 50.0,),
-					Divider(						
-					),
-					Center(
-						child: FloatingActionButton(
-							child: Text('B'),
-							onPressed: (){
-								Navigator.pushNamed(context, 'basic');
-							},
-						),
-					),
-					Divider(),
-					Center(
-						child: FloatingActionButton(
-							child: Text('I'),
-							onPressed: (){
-								Navigator.pushNamed(context, 'intermediate');
-							},
-						),
-					),
-					Divider(),
-					Center(
-						child: FloatingActionButton(
-							child: Text('A'),
-							onPressed: (){
-								Navigator.pushNamed(context, 'advanced');
-							},
-						),
-					),
-					
-				],
-			),
+			body: Container(
+				width: double.infinity,
+				height: double.infinity,
+				child: Column(
+					crossAxisAlignment: CrossAxisAlignment.stretch,
+					mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+					children: <Widget>[
+						_button('Basic', context, 'basic'),
+						_button('Scroll Page', context, 'scroll'),
+						_button('Advanced', context, 'advanced'),
+					],
+				)
+			)
     	);
   	}
+
+	Widget _button(String title, BuildContext context, String next_page){
+		return Center(
+			child: RaisedButton(
+				shape: StadiumBorder(),
+				color: Colors.blue,
+				textColor: Colors.white,
+				child: Text(title, style: TextStyle(fontSize: 25.0),),
+				padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+				onPressed: (){
+					Navigator.pushNamed(context, next_page);
+				},
+			)
+		);
+	}
+
+	
 }
